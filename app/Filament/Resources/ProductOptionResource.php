@@ -18,6 +18,7 @@ class ProductOptionResource extends Resource
     protected static ?string $model = ProductOption::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $label = 'Product Custom Option';
 
     public static function form(Form $form): Form
     {
@@ -39,10 +40,10 @@ class ProductOptionResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->label('Isi Menu'),
-                        // Forms\Components\FileUpload::make('image')
-                        //     ->image()
-                        //     ->required()
-                        //     ->label('Gambar'),
+                        Forms\Components\FileUpload::make('image')
+                            ->image()
+                           
+                            ->label('Gambar'),
                     ])
                     ->columns(2)
                     ->createItemButtonLabel('Add')

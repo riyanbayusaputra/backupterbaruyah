@@ -9,7 +9,8 @@ class ProductOptionItem extends Model
     protected $fillable = [
         'product_option_id',
         'name',
-       // Tambahkan jika ada kolom gambar
+        'image',
+
     ];
 
     // Relasi ke ProductOption (parent)
@@ -23,8 +24,9 @@ class ProductOptionItem extends Model
     return $this->belongsTo(ProductOption::class);
 }
 
-    // Relasi ke Product (grandparent)
 
-    // Jika ingin akses produk langsung lewat relasi, bisa pakai hasOneThrough (opsional)
-    // atau akses lewat $this->productOption->product
+
+
+
+    
 }

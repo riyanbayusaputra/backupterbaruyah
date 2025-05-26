@@ -18,7 +18,7 @@ class ProductOptionItemResource extends Resource
     protected static ?string $model = ProductOptionItem::class;
     
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    //    protected static ?string $label = 'Product-isi Menu';
+    protected static ?string $label = 'Product Custom Option item';
     public static function form(Form $form): Form
     {
         return $form
@@ -30,7 +30,13 @@ class ProductOptionItemResource extends Resource
                 Forms\Components\Select::make('product_option_id')
                     ->relationship('product_option', 'name')
                     ->required()
-                    ->label('Kategori Menu'),
+                    ->label('Kategori'),
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                 
+                    ->disk('public') 
+                    ->label('Gambar'),
+             
             ])->columns(2);
     }
 

@@ -107,7 +107,7 @@ class OrderResource extends Resource
                         ->columnSpan('full'),
                 ]),
                 Forms\Components\Textarea::make('custom_options_text')
-                ->label('Pilihan opsi Custom isi menu')
+                ->label('Pilihan Custom  ganti isi menu')
                  ->disabled()
                 ->dehydrated(false),
                 Forms\Components\TextInput::make('custom_options_json')
