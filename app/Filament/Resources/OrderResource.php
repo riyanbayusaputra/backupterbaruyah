@@ -106,24 +106,25 @@ class OrderResource extends Resource
                         ->columns(3)
                         ->columnSpan('full'),
                 ]),
-                Forms\Components\Textarea::make('custom_options_text')
+                Forms\Components\Textarea::make('custom_options_json')
                 ->label('Pilihan Custom  ganti isi menu')
-                 ->disabled()
-                ->dehydrated(false),
-                Forms\Components\TextInput::make('custom_options_json')
-                ->label('Pilihan Custom (JSON)')
-                ->disabled()
-                ->dehydrated(false)
-                ->visible(fn ($record) => $record?->is_custom_catering == true)
                 ->formatStateUsing(fn ($state) => json_decode($state, true) ? implode(', ', json_decode($state, true)) : '-')
-                ->default(fn ($record) => $record->custom_options_text ?? '-'),
-                    Forms\Components\TextInput::make('custom_options_text')
-                ->label('Pilihan Custom (Teks)')
                 ->disabled()
-                ->dehydrated(false)
-                ->visible(fn ($record) => $record?->is_custom_catering == true)
-                ->formatStateUsing(fn ($record) => json_decode($record->custom_options_json, true) ? implode(', ', json_decode($record->custom_options_json, true)) : '-')
-                ->default(fn ($record) => implode(', ', json_decode($record->custom_options_json, true) ?? [])),
+                ->dehydrated(false),
+                // Forms\Components\TextInput::make('custom_options_json')
+                // ->label('Pilihan Custom (JSON)')
+                // ->disabled()
+                // ->dehydrated(false)
+                // ->visible(fn ($record) => $record?->is_custom_catering == true)
+                // ->formatStateUsing(fn ($state) => json_decode($state, true) ? implode(', ', json_decode($state, true)) : '-')
+                // ->default(fn ($record) => $record->custom_options_text ?? '-'),
+                //     Forms\Components\TextInput::make('custom_options_text')
+                // ->label('Pilihan Custom (Teks)')
+                // ->disabled()
+                // ->dehydrated(false)
+                // ->visible(fn ($record) => $record?->is_custom_catering == true)
+                // ->formatStateUsing(fn ($record) => json_decode($record->custom_options_json, true) ? implode(', ', json_decode($record->custom_options_json, true)) : '-')
+                // ->default(fn ($record) => implode(', ', json_decode($record->custom_options_json, true) ?? [])),
                 ]),
             
 
@@ -253,6 +254,8 @@ class OrderResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->visible(fn ($record) => $record->status != OrderStatusService::STATUS_COMPLETED && $record->status != OrderStatusService::STATUS_CANCELLED),
                 Tables\Actions\Action::make('generate_invoice')
                     ->label('Invoice')
                     ->icon('heroicon-o-document-text')

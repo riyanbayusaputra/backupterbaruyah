@@ -56,7 +56,7 @@ class Checkout extends Component
     protected $rules = [
         'shippingData.recipient_name' => 'required|min:3',
         'shippingData.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-        'shippingData.shipping_address' => 'required|min:10',
+        'shippingData.shipping_address' => 'required|min:5',
         // 'shippingData.noted' => 'nullable|min:10',
         'shippingData.delivery_date' => 'required',
         'shippingData.delivery_time' => 'required',
