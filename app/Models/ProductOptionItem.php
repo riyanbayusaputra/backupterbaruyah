@@ -17,6 +17,12 @@ class ProductOptionItem extends Model
     {
         return $this->belongsTo(ProductOption::class);
     }
+
+    public function product_option()
+{
+    return $this->belongsTo(ProductOption::class);
+}
+
     // Relasi ke Product (grandparent)
 
     // Jika ingin akses produk langsung lewat relasi, bisa pakai hasOneThrough (opsional)

@@ -27,7 +27,7 @@ class ProductOptionResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)
-                    ->label('Option Name'),
+                    ->label('Kategori Menu'),
                 Forms\Components\Select::make('product_id')
                     ->relationship('product', 'name')
                     ->required()
@@ -38,10 +38,14 @@ class ProductOptionResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255)
-                            ->label('Item Name'),
+                            ->label('Isi Menu'),
+                        // Forms\Components\FileUpload::make('image')
+                        //     ->image()
+                        //     ->required()
+                        //     ->label('Gambar'),
                     ])
                     ->columns(2)
-                    ->createItemButtonLabel('Add Item')
+                    ->createItemButtonLabel('Add')
                
             ])->columns(2);
             
@@ -58,7 +62,7 @@ class ProductOptionResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
                     ->searchable()
-                    ->label('Option Name'),
+                    ->label('Kategori Menu'),
                 Tables\Columns\TextColumn::make('product.name')
                     ->sortable()
                     ->searchable()

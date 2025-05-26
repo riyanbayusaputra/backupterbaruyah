@@ -68,11 +68,7 @@ class ProductResource extends Resource
                                     ->required()
                                     ->numeric()
                                     ->prefix('Rp'),
-                                // Forms\Components\Toggle::make('is_active')
-                                //     ->required()
-                                //     ->helperText('Enable or disable product visibility')
-                                //     ->default(false)
-                                //     ->label('Active'),
+                          
                             ]),
                     ]),
             ]);

@@ -13,13 +13,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductOptionItemResource\Pages;
 use App\Filament\Resources\ProductOptionItemResource\RelationManagers;
-
 class ProductOptionItemResource extends Resource
 {
     protected static ?string $model = ProductOptionItem::class;
-
+    
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    //    protected static ?string $label = 'Product-isi Menu';
     public static function form(Form $form): Form
     {
         return $form
@@ -27,13 +26,12 @@ class ProductOptionItemResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)
-                    ->label('Item Name'),
+                    ->label('Isi Menu'),
                 Forms\Components\Select::make('product_option_id')
                     ->relationship('product_option', 'name')
                     ->required()
-                    ->label('Option Name'),
+                    ->label('Kategori Menu'),
             ])->columns(2);
-            
     }
 
     public static function table(Table $table): Table
@@ -47,34 +45,26 @@ class ProductOptionItemResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
                     ->searchable()
-                    ->label('Item Name'),
+                    ->label('Isi Menu'),
                 Tables\Columns\TextColumn::make('product_option.name')
                     ->sortable()
                     ->searchable()
-                    ->label('Option Name'),
-            ])->filters([
-                //
-            ])->headerActions([
-                Tables\Actions\CreateAction::make(),
-            ])->actions([
-                // Tables\Actions\EditAction::make(),
-            ])->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    ->label('Kategori Menu'),
             ])
             ->filters([
                 //
             ])
-            // ->actions([
-            //     Tables\Actions\EditAction::make(),
+            // ->headerActions([
+            //     Tables\Actions\CreateAction::make()->label('Tambah Isi Menu'),
             // ])
+            ->actions([
+                Tables\Actions\EditAction::make()->label('Ubah Isi Menu'),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->label('Hapus Pilihan Terpilih'),
                 ]),
             ]);
-            
     }
 
     public static function getRelations(): array
