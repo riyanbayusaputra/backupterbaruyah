@@ -37,37 +37,29 @@
 
     <!-- Section 2: Recipient Information -->
     <div>
-        <div class="flex items-center gap-2 mb-4">
-            <i class="bi bi-person text-lg text-primary"></i>
-            <h2 class="text-lg font-medium">Data Penerima</h2>
+      <div class="flex items-center gap-2 mb-4">
+        <i class="bi bi-person text-lg text-primary"></i>
+        <h2 class="text-lg font-medium">Data Penerima</h2>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
+        <!-- Name -->
+        <div>
+          <label class="text-sm text-gray-600 mb-1.5 block">Nama Lengkap</label>
+          <input type="text" 
+                 wire:model="shippingData.recipient_name"
+                 class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
+                 placeholder="Masukkan nama lengkap penerima">
         </div>
-        <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
-            <!-- Name -->
-            <div>
-                <label class="text-sm text-gray-600 mb-1.5 block">Nama Lengkap</label>
-                <input type="text" 
-                             wire:model="shippingData.recipient_name"
-                             class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
-                             placeholder="Masukkan nama lengkap penerima"
-                             required minlength="3">
-                @error('shippingData.recipient_name')
-                    <span class="text-red-500 text-sm">Nama penerima wajib diisi (minimal 3 karakter).</span>
-                @enderror
-            </div>
 
-            <!-- Phone -->
-            <div>
-                <label class="text-sm text-gray-600 mb-1.5 block">Nomor Telepon</label>
-                <input wire:model="shippingData.phone"   
-                             type="tel" 
-                             class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
-                             placeholder="Contoh: 08123456789"
-                             required minlength="10">
-                @error('shippingData.phone')
-                    <span class="text-red-500 text-sm">Nomor telepon wajib diisi dengan benar.</span>
-                @enderror
-            </div>
+        <!-- Phone -->
+        <div>
+          <label class="text-sm text-gray-600 mb-1.5 block">Nomor Telepon</label>
+          <input wire:model="shippingData.phone"   
+                 type="tel" 
+                 class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
+                 placeholder="Contoh: 08123456789">
         </div>
+      </div>
     </div>
 
     <!-- Section 3: Location Selection -->
@@ -111,32 +103,27 @@
 
     <!-- Section 4: Shipping Address -->
     <div>
-        <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
-            <!-- Detailed Address -->
-            <div>
-                <label class="text-sm text-gray-600 mb-1.5 block">Detail Alamat</label>
-                <textarea wire:model.live="shippingData.shipping_address"
-                                    class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
-                                    rows="3"
-                                    placeholder="Nama jalan, nomor rumah (patokan), RT/RW, Desa/Kelurahan"
-                                    minlength="5"
-                                    required></textarea>
-                @error('shippingData.shipping_address')
-                    <span class="text-red-500 text-sm">Alamat wajib diisi (minimal 5 karakter).</span>
-                @enderror
-            </div>
-            <div>
-                @if($shippingData['shipping_address'] && $shippingData['recipient_name'] && $shippingData['phone'])
-                    <div class="mt-3 p-3 bg-gray-50 rounded-lg text-sm">
-                        <div class="font-medium">Detail Pengiriman:</div>
-                        <div class="text-gray-600">Nama : {{$shippingData['recipient_name']}}</div>
-                        <div class="text-gray-600">Nomor : {{$shippingData['phone']}}</div>
-                        <div class="text-gray-600">Alamat : {{$shippingData['shipping_address']}}</div>
-                        <div class="text-gray-600">Biaya Ongkir  : Ongkir di tentukan setelah anda melakukan pemesanan</div>
-                    </div>
-                @endif
-            </div>
+      <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
+        <!-- Detailed Address -->
+        <div>
+          <label class="text-sm text-gray-600 mb-1.5 block">Detail Alamat</label>
+          <textarea wire:model.live="shippingData.shipping_address"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary"
+                    rows="3"
+                    placeholder="Nama jalan, nomor rumah (patokan), RT/RW, Desa/Kelurahan"></textarea>
         </div>
+        <div>
+          @if($shippingData['shipping_address'] && $shippingData['recipient_name'] && $shippingData['phone'])
+            <div class="mt-3 p-3 bg-gray-50 rounded-lg text-sm">
+              <div class="font-medium">Detail Pengiriman:</div>
+              <div class="text-gray-600">Nama : {{$shippingData['recipient_name']}}</div>
+              <div class="text-gray-600">Nomor : {{$shippingData['phone']}}</div>
+              <div class="text-gray-600">Alamat : {{$shippingData['shipping_address']}}</div>
+              <div class="text-gray-600">Biaya Ongkir  : Ongkir di tentukan setelah anda melakukan pemesanan</div>
+            </div>
+          @endif
+        </div>
+      </div>
     </div>
 
     <!-- Section 5: Additional Notes -->
@@ -167,7 +154,7 @@
           <input type="date" wire:model.defer="shippingData.delivery_date"
                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
           @error('shippingData.delivery_date')
-          <span class="text-sm text-red-500">Tanggal wajib diisi.</span>
+          <span class="text-sm text-red-500">{{ $message }}</span>
           @enderror
         </div>
 
@@ -178,7 +165,7 @@
                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer"
                  required />
           @error('shippingData.delivery_time')
-          <span class="text-sm text-red-500">Waktu wajib diisi.</span>
+          <span class="text-sm text-red-500">{{ $message }}</span>
           @enderror
         </div>
 

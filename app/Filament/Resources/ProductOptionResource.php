@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ProductOptionResource extends Resource
 {
     protected static ?string $model = ProductOption::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $label = 'Product Custom Option';
+    protected static ?string $navigationGroup = 'Management Products';
+    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
+    protected static ?string $label = 'Opsi Kustom Produk';
 
     public static function form(Form $form): Form
     {

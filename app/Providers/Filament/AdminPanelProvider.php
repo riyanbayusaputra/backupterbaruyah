@@ -20,6 +20,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\RevenueChart;
 use App\Filament\Widgets\BestSellingProductTable;
 
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -31,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Bintang Rasa Catering tegal')
             ->login()
             ->colors([
-                'primary' => Color::Orange,
+                'primary' => '#8B4513', // warna coklat
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

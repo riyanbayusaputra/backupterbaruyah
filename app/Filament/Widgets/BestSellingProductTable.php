@@ -53,3 +53,4 @@ class BestSellingProductTable extends BaseWidget
         return (string) $record->product_id;
     }
 }
+

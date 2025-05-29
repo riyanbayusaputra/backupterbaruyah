@@ -16,9 +16,9 @@ use App\Filament\Resources\ProductOptionItemResource\RelationManagers;
 class ProductOptionItemResource extends Resource
 {
     protected static ?string $model = ProductOptionItem::class;
-    
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $label = 'Product Custom Option item';
+    protected static ?string $navigationGroup = 'Management Products';
+    protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
+    protected static ?string $label = 'Item Opsi Kustom Produk';
     public static function form(Form $form): Form
     {
         return $form
@@ -64,8 +64,14 @@ class ProductOptionItemResource extends Resource
             //     Tables\Actions\CreateAction::make()->label('Tambah Isi Menu'),
             // ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('Ubah Isi Menu'),
+                Tables\Actions\EditAction::make()->label('Edit'),
+                Tables\Actions\CreateAction::make()
+                    ->label('Tambah')
+                    ->icon('heroicon-o-plus-circle'),
+                Tables\Actions\DeleteAction::make()->label('Hapus'),
+
             ])
+          
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->label('Hapus Pilihan Terpilih'),

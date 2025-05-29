@@ -60,9 +60,38 @@ class Checkout extends Component
         // 'shippingData.noted' => 'nullable|min:10',
         'shippingData.delivery_date' => 'required',
         'shippingData.delivery_time' => 'required',
+        ];
 
-    ];
+        protected function rules()
+        {
+            $rules = [
+                'shippingData.recipient_name' => 'required|min:3',
+                'shippingData.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+                'shippingData.shipping_address' => 'required|min:5',
+                'shippingData.delivery_date' => 'required',
+                'shippingData.delivery_time' => 'required',
+            ];
 
+            if ($this->isCustomCatering) {
+                $rules['customCatering.menu_description'] = 'required|min:5';
+            }
+
+            return $rules;
+        }
+
+        protected $messages = [
+            'shippingData.phone.required' => 'Nomor telepon wajib diisi.',
+            'shippingData.phone.min' => 'Nomor telepon minimal 10 karakter.',
+            'shippingData.phone.regex' => 'Format nomor telepon tidak valid.',
+            'shippingData.recipient_name.required' => 'Nama penerima wajib diisi.',
+            'shippingData.recipient_name.min' => 'Nama penerima minimal 3 karakter.',
+            'shippingData.shipping_address.required' => 'Alamat pengiriman wajib diisi.',
+            'shippingData.shipping_address.min' => 'Alamat pengiriman minimal 5 karakter.',
+            'shippingData.delivery_date.required' => 'Tanggal pengiriman wajib dipilih.',
+            'shippingData.delivery_time.required' => 'Waktu pengiriman wajib dipilih.',
+            'customCatering.menu_description.required' => 'Deskripsi menu wajib diisi.',
+        ];
+    
     
 
     public function boot(MidtransService $midtrans)
